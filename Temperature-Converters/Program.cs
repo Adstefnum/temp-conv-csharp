@@ -11,13 +11,17 @@ namespace Temperature_Converters
     {
         static void Main(string[] args)
         {
+            //seeting up correct cultural context for program
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
+            //setting up state variables and structres
             double temp = 0f;
             char fromMode = '0';
+            char toMode = '0';
             double result;
+            List<Char> scales = new List<Char>() { 'F','C','K'};
             var converterClasses = new System.Collections.Generic.Dictionary<char, Delegate>();
             CelsiusConverter _celsiusConverter = new CelsiusConverter();
             FarenheitConverter _farenheitConverter = new FarenheitConverter();
@@ -27,24 +31,28 @@ namespace Temperature_Converters
             converterClasses['K'] = new Func<char, double, object>(_kelvinConverter.classMain);
 
 
-            //TODO parsing for the char modes like temp and if wrong ask them to put right value
-            //TODO checking if it is in list of chars for temp scale and tell them it si currently not supported
-
-
-            Console.WriteLine(@"Please Enter the unit of temperature you are converting from\n
+            //parsing for right input
+            //I also need to check for special chars
+            do {
+                Console.WriteLine(@"Please Enter the unit of temperature you are converting from\n
                      C - Celsius / Centigrade\n
                      F - Farenheit\n
                      K - Kelvin:");
-             fromMode = Char.ToUpper(Console.ReadLine()[0]);
+                fromMode = Char.ToUpper(Console.ReadLine()[0]);
+            }
+            while (!scales.Contains(fromMode));
 
-            Console.WriteLine(@"Please Enter the unit of temperature you are converting to\n
+            do
+            {
+                Console.WriteLine(@"Please Enter the unit of temperature you are converting to\n
                      C - Celsius / Centigrade\n
                      F - Farenheit\n
                      K - Kelvin:");
-            char toMode = Char.ToUpper(Console.ReadLine()[0]);
+                toMode = Char.ToUpper(Console.ReadLine()[0]);
+            }
+            while (!scales.Contains(fromMode));
 
 
-           
 
             do
             {
@@ -52,11 +60,15 @@ namespace Temperature_Converters
             }
             while (!double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out temp));
 
-                result = Convert.ToDouble(converterClasses[toMode].DynamicInvoke(fromMode, temp));
+            //getting results from appropriate classes
+           result = Convert.ToDouble(converterClasses[toMode].DynamicInvoke(fromMode, temp));
 
             
             Console.WriteLine($"{temp} {fromMode} = {Math.Round(result,2)} {toMode}");
             Console.ReadLine();
+
+
+            
         }
     }
 }
