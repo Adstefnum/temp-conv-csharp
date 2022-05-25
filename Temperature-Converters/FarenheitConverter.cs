@@ -22,9 +22,8 @@ namespace Temperature_Converters
         }
         public float fromKelvintoSelf(float Temp)
         {
-            CelsiusConverter _celsiusConverter = new CelsiusConverter();
-            Temp = Temp - 273;
-            return _celsiusConverter.fromFarenheittoSelf(Temp);
+            Temp = (Temp * 9 / 5) - 459.67f;
+            return Temp;
         }
 
         public float fromFarenheittoSelf(float Temp)

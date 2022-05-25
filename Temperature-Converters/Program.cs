@@ -17,7 +17,7 @@ namespace Temperature_Converters
 
             float temp = 0f;
             char fromMode = '0';
-            object result;
+            double result;
             var converterClasses = new System.Collections.Generic.Dictionary<char, Delegate>();
             CelsiusConverter _celsiusConverter = new CelsiusConverter();
             FarenheitConverter _farenheitConverter = new FarenheitConverter();
@@ -52,10 +52,10 @@ namespace Temperature_Converters
             }
             while (!float.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out temp));
 
-                result = converterClasses[toMode].DynamicInvoke(fromMode, temp);
+                result = Convert.ToDouble(converterClasses[toMode].DynamicInvoke(fromMode, temp));
 
             
-            Console.WriteLine($"{temp} {fromMode} = {result} {toMode}");
+            Console.WriteLine($"{temp} {fromMode} = {Math.Round(result,2)} {toMode}");
             Console.ReadLine();
         }
     }
