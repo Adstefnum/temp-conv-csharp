@@ -9,29 +9,29 @@ namespace Temperature_Converters
     public class CelsiusConverter : ITemperatureConverters
     {
 
-        public object classMain(char fromMode, float Temp)
+        public object classMain(char fromMode, double Temp)
         {
             
             var converterFunctions = new System.Collections.Generic.Dictionary<char, Delegate>();
-            converterFunctions['K'] = new Func<float, float>(fromKelvintoSelf);
-            converterFunctions['F'] = new Func<float, float>(fromFarenheittoSelf);
-            converterFunctions['C'] = new Func<float, float>(fromCelsiustoSelf);
+            converterFunctions['K'] = new Func<double, double>(fromKelvintoSelf);
+            converterFunctions['F'] = new Func<double, double>(fromFarenheittoSelf);
+            converterFunctions['C'] = new Func<double, double>(fromCelsiustoSelf);
 
 
             return converterFunctions[fromMode].DynamicInvoke(Temp);
         }
-        public  float fromKelvintoSelf(float Temp) {
+        public  double fromKelvintoSelf(double Temp) {
 
             return Temp-273;
         }
 
-        public  float fromFarenheittoSelf(float Temp)
+        public  double fromFarenheittoSelf(double Temp)
         {
            
             return ((Temp - 32) * 5 / 9); 
         }
 
-        public  float fromCelsiustoSelf(float Temp)
+        public  double fromCelsiustoSelf(double Temp)
         {
 
             return Temp;

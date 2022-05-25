@@ -15,16 +15,16 @@ namespace Temperature_Converters
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-            float temp = 0f;
+            double temp = 0f;
             char fromMode = '0';
             double result;
             var converterClasses = new System.Collections.Generic.Dictionary<char, Delegate>();
             CelsiusConverter _celsiusConverter = new CelsiusConverter();
             FarenheitConverter _farenheitConverter = new FarenheitConverter();
             KelvinConverter _kelvinConverter = new KelvinConverter();
-            converterClasses['C'] = new Func<char,float,object>(_celsiusConverter.classMain);
-            converterClasses['F'] = new Func<char, float, object>(_farenheitConverter.classMain);
-            converterClasses['K'] = new Func<char, float, object>(_kelvinConverter.classMain);
+            converterClasses['C'] = new Func<char,double,object>(_celsiusConverter.classMain);
+            converterClasses['F'] = new Func<char, double, object>(_farenheitConverter.classMain);
+            converterClasses['K'] = new Func<char, double, object>(_kelvinConverter.classMain);
 
 
             //TODO parsing for the char modes like temp and if wrong ask them to put right value
@@ -50,7 +50,7 @@ namespace Temperature_Converters
             {
                 Console.WriteLine("Please enter the temperature value:");
             }
-            while (!float.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out temp));
+            while (!double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out temp));
 
                 result = Convert.ToDouble(converterClasses[toMode].DynamicInvoke(fromMode, temp));
 

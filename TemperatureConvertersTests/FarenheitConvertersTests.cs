@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Temperature_Converters;
+using System;
 
 namespace TemperatureConvertersTests
 {
@@ -11,29 +12,32 @@ namespace TemperatureConvertersTests
         FarenheitConverter _farenheitConverter = new FarenheitConverter();
 
         [TestMethod]
-        public void test_Farenheit_fromKelvintoSelf() {
+        [DataRow(233.15, -40)]
+        [DataRow(100, -279.67)]
+        [DataRow(-180, -783.67)]
+        public void test_Farenheit_fromKelvintoSelf(double temp, double expected)
+        {
+            Assert.AreEqual(expected, Math.Round(_farenheitConverter.fromKelvintoSelf(temp), 2));
 
-            Assert.AreEqual(-40, _farenheitConverter.fromKelvintoSelf(233));
-      
         }
 
         [TestMethod]
-        public void test_Farenheit_fromFarenheittoSelf() {
+        [DataRow(100,100)]
+        [DataRow(92.70, 92.7)]
+        [DataRow(-100, -100)]
+        public void test_Farenheit_fromFarenheittoSelf(double temp, double expected) {
+            Assert.AreEqual(expected, Math.Round(_farenheitConverter.fromFarenheittoSelf(temp),2));
 
-            Assert.AreEqual(100, _farenheitConverter.fromFarenheittoSelf(100));
-            Assert.AreEqual(-100, _farenheitConverter.fromFarenheittoSelf(-100));
-
-            //failing
-            //Assert.AreEqual(92.7, _farenheitConverter.fromFarenheittoSelf(92.7f));
         }
 
         [TestMethod]
-        public void test_Farenheit_fromCelsiustoSelf() {
-            //instead of rounding in program why not round answer here or?
-            //Assert.AreEqual(98.6, _farenheitConverter.fromCelsiustoSelf(37));
-            Assert.AreEqual(-40, _farenheitConverter.fromCelsiustoSelf(-40));
-            Assert.AreEqual(212, _farenheitConverter.fromCelsiustoSelf(100));
-            Assert.AreEqual(32, _farenheitConverter.fromCelsiustoSelf(0));
+        [DataRow(100, 212)]
+        [DataRow(0, 32)]
+        [DataRow(-40, -40)]
+        [DataRow(37, 98.60)]
+        public void test_Farenheit_fromCelsiustoSelf(double temp, double expected) {
+            Assert.AreEqual(expected, Math.Round(_farenheitConverter.fromCelsiustoSelf(temp),2));
+            
         }
 
     }

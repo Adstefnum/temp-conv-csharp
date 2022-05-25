@@ -8,9 +8,9 @@ namespace Temperature_Converters
 {
     interface ITemperatureConverters
     {
-        object classMain(char fromMode, float Temp);
-         float fromKelvintoSelf(float Temp);
-        float fromFarenheittoSelf(float Temp);
-        float fromCelsiustoSelf(float Temp);
+        object classMain(char fromMode, double Temp);
+         double fromKelvintoSelf(double Temp);
+        double fromFarenheittoSelf(double Temp);
+        double fromCelsiustoSelf(double Temp);
     }
 }

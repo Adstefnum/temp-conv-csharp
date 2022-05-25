@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Temperature_Converters;
+using System;
 
 namespace TemperatureConvertersTests
 {
@@ -9,35 +10,38 @@ namespace TemperatureConvertersTests
 
         CelsiusConverter _celsiusConverter = new CelsiusConverter();
 
+      
         [TestMethod]
-        public void test_Celsius_fromCelsiustoSelf()
+        [DataRow(100, 100)]
+        [DataRow(92.70, 92.7)]
+        [DataRow(-92.78, -92.78)]
+        [DataRow(-100, -100)]
+        public void test_Celsius_fromCelsiustoSelf(double temp, double expected)
         {
-            Assert.AreEqual(100, _celsiusConverter.fromCelsiustoSelf(100));
-            Assert.AreEqual(-100, _celsiusConverter.fromCelsiustoSelf(-100));
-
-
-            //failing
-            //Assert.AreEqual(-92.78, _celsiusConverter.fromCelsiustoSelf(-92.78f));
-            //Assert.AreEqual(92.7, _celsiusConverter.fromCelsiustoSelf(92.7f));
-
+            Assert.AreEqual(expected, Math.Round(_celsiusConverter.fromCelsiustoSelf(temp), 2));
 
         }
 
         [TestMethod]
-        public void test_Celsius_fromFarenheittoSelf()
+        [DataRow(-40, -40)]
+        [DataRow(98.6, 37)]
+        [DataRow(32, 0)]
+        [DataRow(212, 100)]
+        public void test_Celsius_fromFarenheittoSelf(double temp, double expected)
         {
-
-            Assert.AreEqual(-40, _celsiusConverter.fromFarenheittoSelf(-40));
-            Assert.AreEqual(37, _celsiusConverter.fromFarenheittoSelf(98.6f));
-            Assert.AreEqual(0, _celsiusConverter.fromFarenheittoSelf(32));
+            Assert.AreEqual(expected, Math.Round(_celsiusConverter.fromFarenheittoSelf(temp), 2));
 
         }
+    
 
         [TestMethod]
-        public void test_Celsius_fromKelvintoSelf()
+        [DataRow(373, 100)]
+        [DataRow(173, -100)]
+        [DataRow(273, 0)]
+        [DataRow(303, 30)]
+        public void test_Celsius_fromKelvintoSelf(double temp, double expected)
         {
-
-            Assert.AreEqual(30, _celsiusConverter.fromKelvintoSelf(303));
+            Assert.AreEqual(expected, Math.Round(_celsiusConverter.fromKelvintoSelf(temp), 2));
 
         }
     }
