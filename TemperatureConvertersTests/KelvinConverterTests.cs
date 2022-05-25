@@ -23,8 +23,8 @@ namespace TemperatureConvertersTests
         }
 
         [TestMethod]
-        [DataRow(180, 453.00)]
-        [DataRow(212, 485.00)]
+        [DataRow(180, 355.37)]
+        [DataRow(212, 373.15)]
         [DataRow(-180, 155.37)]
         [DataRow(-212, 137.59)]
         [DataRow(-40, 233.15)]
