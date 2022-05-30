@@ -2,7 +2,7 @@
 
 namespace Temperature_Converters
 {
-    interface ITemperatureConverter
+    public interface ITemperatureConverter
     {
        double ConvertToTemperatureScale(double Temp);
 }}
