@@ -5,7 +5,9 @@ A simple temperature converter for Celsius, Farenheit, and Kelvin to learn SOLID
 ![Tests](https://github.com/Adstefnum/temp-conv-csharp/actions/workflows/tests.yml/badge.svg)
 
 # TODO
-- fix failing gh actions-- it is failing because it cannot find the dependencies for my dotnet version -- retarget my project from dotnet 4.6.1 to 6.0 but i have no computer to do so right now.
 - write some failing tests
-- write tests to cover the classmain and program main functions
+- write tests to cover:
+    - program main
+    - other functions in program class
+    - factory class functions
 - catch special characters on input
