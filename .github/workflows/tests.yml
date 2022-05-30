@@ -21,9 +21,11 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
-    - name: Install dependencies
-      run: dotnet restore
+    - name: Install app dependencies
+      run: dotnet restore src
+    - name: Install test dependencies
+      run: dotnet restore tests
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build src --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test tests --no-restore --verbosity normal
