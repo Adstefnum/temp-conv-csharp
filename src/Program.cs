@@ -19,8 +19,8 @@ namespace Temperature_Converters
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
             
            //collecting values from user 
-            char CurrentUnit = CollectCurrentTemperatureUnit();
-            char ToUnit = CollectDestinationTemperatureUnit();
+            char CurrentUnit = CollectTemperatureUnit("from");
+            char ToUnit = CollectTemperatureUnit("to");
             double Temp = CollectTemperatureValue();
             
             //converting the temperature
@@ -33,35 +33,19 @@ namespace Temperature_Converters
             
         }
 
-       public static char CollectCurrentTemperatureUnit(){
+       public static char CollectTemperatureUnit(string mode){
 
-            char CurrentUnit = '0';
+            char Unit = '0';
             do {
-                Console.WriteLine(@"Please Enter the unit of temperature you are converting from\n
+                Console.WriteLine($@"Please Enter the unit of temperature you are converting {mode}\n
                      C - Celsius / Centigrade\n
                      F - Farenheit\n
                      K - Kelvin:");
-                CurrentUnit = Char.ToUpper(Console.ReadLine()[0]);
+                Unit = Char.ToUpper(Console.ReadLine()[0]);
             }
-            while (!scales.Contains(CurrentUnit));
+            while (!scales.Contains(Unit));
 
-            return CurrentUnit;
-        }
-
-
-        public static char CollectDestinationTemperatureUnit(){
-
-            char ToUnit = '0';
-            do {
-                Console.WriteLine(@"Please Enter the unit of temperature you are converting to\n
-                     C - Celsius / Centigrade\n
-                     F - Farenheit\n
-                     K - Kelvin:");
-                ToUnit = Char.ToUpper(Console.ReadLine()[0]);
-            }
-            while (!scales.Contains(ToUnit));
-
-            return ToUnit;
+            return Unit;
         }
 
         static double CollectTemperatureValue(){
