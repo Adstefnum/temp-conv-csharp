@@ -11,7 +11,6 @@ namespace Temperature_Converters
     class Program
     {
 
-        static List<Char> scales = new List<Char>() { 'F','C','K'};
         static void Main(string[] args)
         {
             //setting up correct cultural context for program
@@ -36,17 +35,24 @@ namespace Temperature_Converters
 
        public static char CollectTemperatureUnit(string mode){
 
-            char Unit = '0';
+            string Input;char Unit;
+            List<Char> scales = new List<Char>() { 'F','C','K'};
             var regex = new Regex(@"[^a-zA-Z0-9\s]");
             do {
-                Console.WriteLine($@"Please Enter the unit of temperature you are converting {mode}\n
+                Console.WriteLine($@"Please Enter the unit of temperature you are converting {mode}
                      C - Celsius / Centigrade\n
                      F - Farenheit\n
                      K - Kelvin:");
-                Unit = Char.ToUpper(Console.ReadLine()[0]);
+                Input = Console.ReadLine();
+                Unit = !String.IsNullOrEmpty(Input) ? Char.ToUpper(Input[0]): '\0';
                 if (regex.IsMatch(Unit.ToString()))
                 {
-                    Unit = '0';
+                    Unit = '\0';
+                }
+
+                if(!scales.Contains(Unit)){
+                    Console.WriteLine("You must choose from the options in the list");
+                    Console.WriteLine();
                 }
             }
             while (!scales.Contains(Unit));
