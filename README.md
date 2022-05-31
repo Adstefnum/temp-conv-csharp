@@ -10,7 +10,7 @@ A simple temperature converter for Celsius, Farenheit, and Kelvin to learn SOLID
     - program main
     - other functions in program class
     - factory class functions
-    -
+- Abstract Console.writeline and Console.Readline as they are external dependecies. They should be supplied as a type of reader or writer
 
 # Information
 - ```

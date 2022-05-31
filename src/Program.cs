@@ -45,10 +45,7 @@ namespace Temperature_Converters
                      K - Kelvin:");
                 Input = Console.ReadLine();
                 Unit = !String.IsNullOrEmpty(Input) ? Char.ToUpper(Input[0]): '\0';
-                if (regex.IsMatch(Unit.ToString()))
-                {
-                    Unit = '\0';
-                }
+                Unit = regex.IsMatch(Unit.ToString())? '\0':Unit;
 
                 if(!scales.Contains(Unit)){
                     Console.WriteLine("You must choose from the options in the list");
