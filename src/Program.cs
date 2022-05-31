@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Temperature_Converters
@@ -36,12 +37,17 @@ namespace Temperature_Converters
        public static char CollectTemperatureUnit(string mode){
 
             char Unit = '0';
+            var regex = new Regex(@"[^a-zA-Z0-9\s]");
             do {
                 Console.WriteLine($@"Please Enter the unit of temperature you are converting {mode}\n
                      C - Celsius / Centigrade\n
                      F - Farenheit\n
                      K - Kelvin:");
                 Unit = Char.ToUpper(Console.ReadLine()[0]);
+                if (regex.IsMatch(Unit.ToString()))
+                {
+                    Unit = '0';
+                }
             }
             while (!scales.Contains(Unit));
 

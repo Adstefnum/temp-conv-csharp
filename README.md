@@ -10,4 +10,3 @@ A simple temperature converter for Celsius, Farenheit, and Kelvin to learn SOLID
     - program main
     - other functions in program class
     - factory class functions
-- catch special characters on input
