@@ -17,17 +17,19 @@ namespace Temperature_Converters
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
             
            //collecting values from user 
-           InputCollector Client = new InputCollector();
-            char CurrentUnit = Client.CollectTemperatureUnit("from");
-            char ToUnit = Client.CollectTemperatureUnit("to");
-            double Temp = Client.CollectTemperatureValue();
+           InputCollector UserInputCollector = new InputCollector();
+            char CurrentUnit = UserInputCollector.CollectTemperatureUnit("from");
+            char ToUnit = UserInputCollector.CollectTemperatureUnit("to");
+            double Temp = UserInputCollector.CollectTemperatureValue();
             
             //converting the temperature
             TemperatureConverterFactory Factory = new TemperatureConverterFactory();
             ITemperatureConverter converter = Factory.ChooseConverter(CurrentUnit, ToUnit);
             double Result =  converter.ConvertToTemperatureScale(Temp);
             
-            Console.WriteLine($"{Temp} {CurrentUnit} = {Math.Round(Result,2)} {ToUnit}");
+            ResultPrinter printer = new ResultPrinter();
+            string ResultText = $"{Temp} {CurrentUnit} = {Math.Round(Result,2)} {ToUnit}";
+            printer.PrintPlainTextResultToConsole(ResultText);
             
         }
 
