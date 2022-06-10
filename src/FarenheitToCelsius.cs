@@ -4,9 +4,10 @@ namespace Temperature_Converters{
 
    public class FarenheitToCelsius: ITemperatureConverter{
 
-       public double ConvertToTemperatureScale(double Temp){
-           return (Temp -32) * 5/9;        
- }
+       public double ConvertToTemperatureScale(double InputTemperature){
+           return (InputTemperature -32) * 5/9;        
+     }
 
-}}
+    }
+}
 

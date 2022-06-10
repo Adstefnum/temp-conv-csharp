@@ -4,10 +4,11 @@ namespace Temperature_Converters{
 
    public class KelvinToFarenheit: ITemperatureConverter{
 
-       public double ConvertToTemperatureScale(double Temp){
+       public double ConvertToTemperatureScale(double InputTemperature){
         
-           Temp = (Temp * 9 / 5) - 459.67;
-            return Temp;
- }
+           InputTemperature = (InputTemperature * 9 / 5) - 459.67;
+            return InputTemperature;
+        }
 
-}}
+    }
+}

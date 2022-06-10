@@ -32,13 +32,14 @@ namespace Temperature_Converters
 
        public double CollectTemperatureValue(){
 
-            double Temp = 0.0;
+            double InputTemperature = 0.0;
             do
             {
                 Console.WriteLine("Please enter the temperature value:");
             }
-            while (!double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out Temp));
+            while (!double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out InputTemperature));
 
-            return Temp;
+            return InputTemperature;
         }
-    }}
+    }
+}
