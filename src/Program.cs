@@ -18,18 +18,21 @@ namespace Temperature_Converters
             
            //collecting values from user 
            InputCollector UserInputCollector = new InputCollector();
-            char CurrentUnit = UserInputCollector.CollectTemperatureUnit("from");
+            char InputUnit = UserInputCollector.CollectTemperatureUnit("from");
             char ToUnit = UserInputCollector.CollectTemperatureUnit("to");
-            double Temp = UserInputCollector.CollectTemperatureValue();
+            double InputTemperature = UserInputCollector.CollectTemperatureValue();
             
             //converting the temperature
             TemperatureConverterFactory Factory = new TemperatureConverterFactory();
-            ITemperatureConverter converter = Factory.ChooseConverter(CurrentUnit, ToUnit);
-            double Result =  converter.ConvertToTemperatureScale(Temp);
+            ITemperatureConverter converter = Factory.ChooseConverter(InputUnit, ToUnit);
+            double ConvertedTemperature =  converter.ConvertToTemperatureScale(InputTemperature);
             
             ResultPrinter printer = new ResultPrinter();
-            string ResultText = $"{Temp} {CurrentUnit} = {Math.Round(Result,2)} {ToUnit}";
-            printer.PrintPlainTextResultToConsole(ResultText);
+            printer.InputUnit = InputUnit;
+            printer.ToUnit = ToUnit;
+            printer.InputTemperature = InputTemperature;
+            printer.ConvertedTemperature = ConvertedTemperature;
+            printer.PrintPlainTextResultToConsole();
             
         }
 
